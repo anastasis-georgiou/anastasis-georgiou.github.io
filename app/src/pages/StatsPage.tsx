@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/components/layout/Navbar';
 import { calculateStatistics, getFormColor } from '@/lib/stats';
@@ -6,10 +6,64 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer,
   LineChart, Line, CartesianGrid,
 } from 'recharts';
+import {
+  fetchTeamData,
+  parseLeagueTable,
+  parseTopScorers,
+  parseLeagueRankings,
+  parseVenueInfo,
+  parseNextMatch,
+} from '@/lib/fotmob';
+import type {
+  FotMobTeamData,
+  LeagueTableRow,
+  FotMobTableLegend,
+  TopScorer,
+  LeagueRanking,
+  VenueInfo as VenueInfoType,
+  NextMatchInfo,
+} from '@/lib/fotmob';
+import { LeagueTable } from '@/components/stats/LeagueTable';
+import { TopScorers } from '@/components/stats/TopScorers';
+import { LeagueRankings } from '@/components/stats/LeagueRankings';
+import { VenueInfo } from '@/components/stats/VenueInfo';
+import { NextMatch } from '@/components/stats/NextMatch';
+
+interface FotMobParsed {
+  tableRows: LeagueTableRow[];
+  tableLegend: FotMobTableLegend[];
+  topScorers: TopScorer[];
+  rankings: LeagueRanking[];
+  venue: VenueInfoType | null;
+  nextMatch: NextMatchInfo | null;
+}
+
+function parseFotMobData(data: FotMobTeamData): FotMobParsed {
+  const table = parseLeagueTable(data);
+  return {
+    tableRows: table?.rows ?? [],
+    tableLegend: table?.legend ?? [],
+    topScorers: parseTopScorers(data),
+    rankings: parseLeagueRankings(data),
+    venue: parseVenueInfo(data),
+    nextMatch: parseNextMatch(data),
+  };
+}
 
 export default function StatsPage() {
   const { t } = useTranslation();
   const stats = useMemo(() => calculateStatistics(), []);
+
+  const [fotmob, setFotmob] = useState<FotMobParsed | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTeamData()
+      .then((data) => {
+        if (data) setFotmob(parseFotMobData(data));
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   const statCards = [
     { label: 'stats.matches', value: stats.overall.played },
@@ -32,11 +86,31 @@ export default function StatsPage() {
     }
   };
 
+  // Loading skeleton for FotMob sections
+  const LoadingSkeleton = () => (
+    <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
+      <div className="animate-pulse space-y-4">
+        <div className="h-6 bg-[rgba(224,37,32,0.15)] rounded w-1/3" />
+        <div className="h-32 bg-[rgba(224,37,32,0.1)] rounded" />
+      </div>
+    </section>
+  );
+
   return (
     <div className="max-w-[1800px] w-[95%] mx-auto">
       <Navbar />
 
-      {/* Overall stats */}
+      {/* 1. Next Match (FotMob) */}
+      {loading && <LoadingSkeleton />}
+      {fotmob?.nextMatch && <NextMatch match={fotmob.nextMatch} />}
+
+      {/* 2. League Standing (FotMob) */}
+      {loading && <LoadingSkeleton />}
+      {fotmob && fotmob.tableRows.length > 0 && (
+        <LeagueTable rows={fotmob.tableRows} legend={fotmob.tableLegend} />
+      )}
+
+      {/* 3. Overall stats (existing) */}
       <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
         <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
           {t('stats.overallStats')}
@@ -58,7 +132,19 @@ export default function StatsPage() {
         </div>
       </section>
 
-      {/* Home vs Away */}
+      {/* 4. League Rankings (FotMob) */}
+      {loading && <LoadingSkeleton />}
+      {fotmob && fotmob.rankings.length > 0 && (
+        <LeagueRankings rankings={fotmob.rankings} />
+      )}
+
+      {/* 5. Top Scorers (FotMob) */}
+      {loading && <LoadingSkeleton />}
+      {fotmob && fotmob.topScorers.length > 0 && (
+        <TopScorers scorers={fotmob.topScorers} />
+      )}
+
+      {/* 6. Home vs Away (existing) */}
       <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
         <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
           {t('stats.homeVsAway')}
@@ -92,7 +178,7 @@ export default function StatsPage() {
         </div>
       </section>
 
-      {/* Recent form + Streaks */}
+      {/* 7. Recent form + Streaks (existing) */}
       <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
         <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
           {t('stats.recentForm')}
@@ -152,7 +238,7 @@ export default function StatsPage() {
         )}
       </section>
 
-      {/* Head to Head */}
+      {/* 8. Head to Head (existing) */}
       <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg overflow-x-auto">
         <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
           {t('stats.headToHead')}
@@ -187,7 +273,7 @@ export default function StatsPage() {
         )}
       </section>
 
-      {/* Goal Distribution Chart */}
+      {/* 9. Goal Distribution Chart (existing) */}
       {stats.goalDistribution.length > 0 && (
         <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
           <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
@@ -211,7 +297,7 @@ export default function StatsPage() {
         </section>
       )}
 
-      {/* Records */}
+      {/* 10. Records (existing) */}
       {(stats.biggestWin || stats.heaviestDefeat) && (
         <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
           <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
@@ -236,7 +322,7 @@ export default function StatsPage() {
         </section>
       )}
 
-      {/* Season Progress Chart */}
+      {/* 11. Season Progress Chart (existing) */}
       {stats.pointsProgression.length > 0 && (
         <section className="bg-[rgba(10,24,16,0.2)] backdrop-blur-sm rounded-2xl p-6 mb-6 border-2 border-[rgba(224,37,32,0.3)] shadow-lg">
           <h2 className="text-red-300 text-xl font-extrabold uppercase tracking-wide mb-5">
@@ -274,6 +360,9 @@ export default function StatsPage() {
           </div>
         </section>
       )}
+
+      {/* 12. Venue Info (FotMob) */}
+      {fotmob?.venue && <VenueInfo venue={fotmob.venue} />}
     </div>
   );
 }

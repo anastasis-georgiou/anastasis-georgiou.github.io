@@ -108,7 +108,22 @@
     "biggestWin": "Biggest Win",
     "heaviestDefeat": "Heaviest Defeat",
     "seasonProgress": "Season Progress",
-    "matchday": "Matchday"
+    "matchday": "Matchday",
+    "leagueStanding": "League Standing",
+    "team": "Team",
+    "topScorers": "Top Scorers",
+    "goalsLabel": "Goals",
+    "leagueRankings": "League Rankings",
+    "outOf": "out of {{total}} teams",
+    "ranking": {},
+    "venueInfo": "Venue",
+    "venueCity": "City",
+    "venueCapacity": "Capacity",
+    "venueSurface": "Surface",
+    "venueYear": "Year Opened",
+    "nextMatch": "Next Match",
+    "homeMatch": "Home",
+    "awayMatch": "Away"
   },
   "popover": {
     "time": "Time",

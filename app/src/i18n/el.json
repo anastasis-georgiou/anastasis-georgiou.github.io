@@ -108,7 +108,22 @@
     "biggestWin": "Μεγαλύτερη Νίκη",
     "heaviestDefeat": "Βαρύτερη Ήττα",
     "seasonProgress": "Πορεία Σεζόν",
-    "matchday": "Αγωνιστική"
+    "matchday": "Αγωνιστική",
+    "leagueStanding": "Βαθμολογία",
+    "team": "Ομάδα",
+    "topScorers": "Κορυφαίοι Σκόρερ",
+    "goalsLabel": "Γκολ",
+    "leagueRankings": "Κατάταξη στο Πρωτάθλημα",
+    "outOf": "από {{total}} ομάδες",
+    "ranking": {},
+    "venueInfo": "Γήπεδο",
+    "venueCity": "Πόλη",
+    "venueCapacity": "Χωρητικότητα",
+    "venueSurface": "Επιφάνεια",
+    "venueYear": "Έτος Κατασκευής",
+    "nextMatch": "Επόμενος Αγώνας",
+    "homeMatch": "Εντός Έδρας",
+    "awayMatch": "Εκτός Έδρας"
   },
   "popover": {
     "time": "Ώρα",

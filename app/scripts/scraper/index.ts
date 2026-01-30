@@ -5,6 +5,7 @@
  */
 
 import * as cheerio from 'cheerio';
+import type { Element } from 'domhandler';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -349,7 +350,7 @@ async function scrapeVolleyballFixtures(
 
   // volleyball.org.cy returns a SportsPress table with columns:
   // Date | Match | Time/Result | Category | Venue
-  $('table.sp-data-table tbody tr').each((_, row) => {
+  $('table.sp-data-table tbody tr').each((_: number, row: Element) => {
     const cells = $(row).find('td');
     if (cells.length < 5) return;
 
@@ -396,8 +397,8 @@ async function scrapeVolleyballFixtures(
       // Extract HH:MM from the <date> element (e.g. " 18:00:00") for a clean 24h time
       const dateEl = $(cells[2]).find('date').text().trim();
       const timeMatch = dateEl.match(/(\d{2}:\d{2})/);
-      matchTime = timeMatch ? timeMatch[1] : scoreTimeRaw;
-      scoreTime = matchTime;
+      scoreTime = timeMatch ? timeMatch[1] : scoreTimeRaw;
+      matchTime = scoreTime;
       status = 'Upcoming';
     }
 
@@ -472,7 +473,7 @@ async function scrapeDataprojectFixtures(
   const fixtures: Fixture[] = [];
 
   // dataproject uses Telerik RadListView with labeled spans
-  $('[id*="RadListView1"] .rlvI, [id*="RadListView1"] .rlvA').each((_, row) => {
+  $('[id*="RadListView1"] .rlvI, [id*="RadListView1"] .rlvA').each((_: number, row: Element) => {
     const el = $(row);
 
     // Team names: Label2 = home, Label4 = away

@@ -1,0 +1,18 @@
+﻿2026-01-30T14:36:30.5399834Z ##[group]Run npm run build
+2026-01-30T14:36:30.5400168Z [36;1mnpm run build[0m
+2026-01-30T14:36:30.5432194Z shell: /usr/bin/bash -e {0}
+2026-01-30T14:36:30.5432505Z env:
+2026-01-30T14:36:30.5432690Z   NODE_ENV: production
+2026-01-30T14:36:30.5432912Z ##[endgroup]
+2026-01-30T14:36:30.6589874Z 
+2026-01-30T14:36:34.1943963Z > red-rebels-calendar@0.0.0 build
+2026-01-30T14:36:34.1944656Z > tsc -b && vite build
+2026-01-30T14:36:34.1944905Z 
+2026-01-30T14:36:34.1962589Z ##[error]scripts/scraper/index.ts(7,26): error TS2307: Cannot find module 'cheerio' or its corresponding type declarations.
+2026-01-30T14:36:34.1972006Z ##[error]scripts/scraper/index.ts(352,43): error TS7006: Parameter '_' implicitly has an 'any' type.
+2026-01-30T14:36:34.1974214Z ##[error]scripts/scraper/index.ts(352,46): error TS7006: Parameter 'row' implicitly has an 'any' type.
+2026-01-30T14:36:34.1976600Z ##[error]scripts/scraper/index.ts(400,7): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+2026-01-30T14:36:34.1978296Z   Type 'undefined' is not assignable to type 'string'.
+2026-01-30T14:36:34.1979588Z ##[error]scripts/scraper/index.ts(475,69): error TS7006: Parameter '_' implicitly has an 'any' type.
+2026-01-30T14:36:34.1981950Z ##[error]scripts/scraper/index.ts(475,72): error TS7006: Parameter 'row' implicitly has an 'any' type.
+2026-01-30T14:36:34.2314868Z ##[error]Process completed with exit code 2.

@@ -1,0 +1,170 @@
+﻿2026-01-30T14:36:20.7469385Z Current runner version: '2.331.0'
+2026-01-30T14:36:20.7505587Z ##[group]Runner Image Provisioner
+2026-01-30T14:36:20.7506763Z Hosted Compute Agent
+2026-01-30T14:36:20.7507661Z Version: 20260123.484
+2026-01-30T14:36:20.7508675Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+2026-01-30T14:36:20.7509941Z Build Date: 2026-01-23T19:41:17Z
+2026-01-30T14:36:20.7511295Z Worker ID: {3b0e881f-5bc3-440a-815b-b6404652617e}
+2026-01-30T14:36:20.7512750Z Azure Region: centralus
+2026-01-30T14:36:20.7513701Z ##[endgroup]
+2026-01-30T14:36:20.7515792Z ##[group]Operating System
+2026-01-30T14:36:20.7516882Z Ubuntu
+2026-01-30T14:36:20.7517692Z 24.04.3
+2026-01-30T14:36:20.7518482Z LTS
+2026-01-30T14:36:20.7519217Z ##[endgroup]
+2026-01-30T14:36:20.7520156Z ##[group]Runner Image
+2026-01-30T14:36:20.7521226Z Image: ubuntu-24.04
+2026-01-30T14:36:20.7522111Z Version: 20260126.10.1
+2026-01-30T14:36:20.7524313Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260126.10/images/ubuntu/Ubuntu2404-Readme.md
+2026-01-30T14:36:20.7527146Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260126.10
+2026-01-30T14:36:20.7528769Z ##[endgroup]
+2026-01-30T14:36:20.7530624Z ##[group]GITHUB_TOKEN Permissions
+2026-01-30T14:36:20.7533788Z Contents: read
+2026-01-30T14:36:20.7534673Z Metadata: read
+2026-01-30T14:36:20.7535570Z Pages: write
+2026-01-30T14:36:20.7536532Z ##[endgroup]
+2026-01-30T14:36:20.7539133Z Secret source: Actions
+2026-01-30T14:36:20.7540238Z Prepare workflow directory
+2026-01-30T14:36:20.7923990Z Prepare all required actions
+2026-01-30T14:36:20.7980015Z Getting action download info
+2026-01-30T14:36:21.2120679Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-01-30T14:36:21.3183698Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-01-30T14:36:21.4108559Z Download action repository 'actions/configure-pages@v4' (SHA:1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d)
+2026-01-30T14:36:21.8363607Z Download action repository 'actions/upload-pages-artifact@v3' (SHA:56afc609e74202658d3ffba0e8f6dda462b719fa)
+2026-01-30T14:36:22.2500048Z Getting action download info
+2026-01-30T14:36:22.4793776Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-01-30T14:36:22.6271292Z Complete job name: build
+2026-01-30T14:36:22.7120632Z ##[group]Run actions/checkout@v4
+2026-01-30T14:36:22.7122361Z with:
+2026-01-30T14:36:22.7123365Z   repository: anastasis-georgiou/anastasis-georgiou.github.io
+2026-01-30T14:36:22.7124939Z   token: ***
+2026-01-30T14:36:22.7125640Z   ssh-strict: true
+2026-01-30T14:36:22.7126368Z   ssh-user: git
+2026-01-30T14:36:22.7127113Z   persist-credentials: true
+2026-01-30T14:36:22.7127961Z   clean: true
+2026-01-30T14:36:22.7128724Z   sparse-checkout-cone-mode: true
+2026-01-30T14:36:22.7129637Z   fetch-depth: 1
+2026-01-30T14:36:22.7130371Z   fetch-tags: false
+2026-01-30T14:36:22.7131365Z   show-progress: true
+2026-01-30T14:36:22.7132134Z   lfs: false
+2026-01-30T14:36:22.7132838Z   submodules: false
+2026-01-30T14:36:22.7133603Z   set-safe-directory: true
+2026-01-30T14:36:22.7134706Z ##[endgroup]
+2026-01-30T14:36:22.8369249Z Syncing repository: anastasis-georgiou/anastasis-georgiou.github.io
+2026-01-30T14:36:22.8372599Z ##[group]Getting Git version info
+2026-01-30T14:36:22.8374480Z Working directory is '/home/runner/work/anastasis-georgiou.github.io/anastasis-georgiou.github.io'
+2026-01-30T14:36:22.8376805Z [command]/usr/bin/git version
+2026-01-30T14:36:22.8436499Z git version 2.52.0
+2026-01-30T14:36:22.8464273Z ##[endgroup]
+2026-01-30T14:36:22.8487578Z Temporarily overriding HOME='/home/runner/work/_temp/24b69c27-59ee-4248-b9a0-c5c55207fe73' before making global git config changes
+2026-01-30T14:36:22.8490247Z Adding repository directory to the temporary git global config as a safe directory
+2026-01-30T14:36:22.8493673Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/anastasis-georgiou.github.io/anastasis-georgiou.github.io
+2026-01-30T14:36:22.8537513Z Deleting the contents of '/home/runner/work/anastasis-georgiou.github.io/anastasis-georgiou.github.io'
+2026-01-30T14:36:22.8540708Z ##[group]Initializing the repository
+2026-01-30T14:36:22.8545969Z [command]/usr/bin/git init /home/runner/work/anastasis-georgiou.github.io/anastasis-georgiou.github.io
+2026-01-30T14:36:22.8643162Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-01-30T14:36:22.8646418Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-01-30T14:36:22.8648990Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-01-30T14:36:22.8650456Z hint: call:
+2026-01-30T14:36:22.8651407Z hint:
+2026-01-30T14:36:22.8652353Z hint: 	git config --global init.defaultBranch <name>
+2026-01-30T14:36:22.8653931Z hint:
+2026-01-30T14:36:22.8655007Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-01-30T14:36:22.8656773Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-01-30T14:36:22.8658181Z hint:
+2026-01-30T14:36:22.8659085Z hint: 	git branch -m <name>
+2026-01-30T14:36:22.8660196Z hint:
+2026-01-30T14:36:22.8661827Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-01-30T14:36:22.8664269Z Initialized empty Git repository in /home/runner/work/anastasis-georgiou.github.io/anastasis-georgiou.github.io/.git/
+2026-01-30T14:36:22.8668197Z [command]/usr/bin/git remote add origin https://github.com/anastasis-georgiou/anastasis-georgiou.github.io
+2026-01-30T14:36:22.8719093Z ##[endgroup]
+2026-01-30T14:36:22.8720472Z ##[group]Disabling automatic garbage collection
+2026-01-30T14:36:22.8723876Z [command]/usr/bin/git config --local gc.auto 0
+2026-01-30T14:36:22.8756657Z ##[endgroup]
+2026-01-30T14:36:22.8758732Z ##[group]Setting up auth
+2026-01-30T14:36:22.8763841Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-01-30T14:36:22.8799454Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-01-30T14:36:22.9127899Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-01-30T14:36:22.9166101Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-01-30T14:36:22.9400337Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-01-30T14:36:22.9442737Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-01-30T14:36:22.9683694Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-01-30T14:36:22.9721866Z ##[endgroup]
+2026-01-30T14:36:22.9723271Z ##[group]Fetching the repository
+2026-01-30T14:36:22.9732957Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bec28d30d7bba7832e3d61919c68fcb1372e2609:refs/remotes/origin/main
+2026-01-30T14:36:23.8447842Z From https://github.com/anastasis-georgiou/anastasis-georgiou.github.io
+2026-01-30T14:36:23.8452803Z  * [new ref]         bec28d30d7bba7832e3d61919c68fcb1372e2609 -> origin/main
+2026-01-30T14:36:23.8486666Z ##[endgroup]
+2026-01-30T14:36:23.8487631Z ##[group]Determining the checkout info
+2026-01-30T14:36:23.8489087Z ##[endgroup]
+2026-01-30T14:36:23.8494315Z [command]/usr/bin/git sparse-checkout disable
+2026-01-30T14:36:23.8535022Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-01-30T14:36:23.8560841Z ##[group]Checking out the ref
+2026-01-30T14:36:23.8564946Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-01-30T14:36:23.9252333Z Switched to a new branch 'main'
+2026-01-30T14:36:23.9253607Z branch 'main' set up to track 'origin/main'.
+2026-01-30T14:36:23.9270270Z ##[endgroup]
+2026-01-30T14:36:23.9309098Z [command]/usr/bin/git log -1 --format=%H
+2026-01-30T14:36:23.9333576Z bec28d30d7bba7832e3d61919c68fcb1372e2609
+2026-01-30T14:36:23.9588184Z ##[group]Run actions/setup-node@v4
+2026-01-30T14:36:23.9588863Z with:
+2026-01-30T14:36:23.9589401Z   node-version: 20
+2026-01-30T14:36:23.9589945Z   cache: npm
+2026-01-30T14:36:23.9590563Z   cache-dependency-path: app/package-lock.json
+2026-01-30T14:36:23.9591388Z   always-auth: false
+2026-01-30T14:36:23.9591959Z   check-latest: false
+2026-01-30T14:36:23.9592714Z   token: ***
+2026-01-30T14:36:23.9593252Z ##[endgroup]
+2026-01-30T14:36:24.1368447Z Found in cache @ /opt/hostedtoolcache/node/20.20.0/x64
+2026-01-30T14:36:24.1374829Z ##[group]Environment details
+2026-01-30T14:36:24.4950169Z node: v20.20.0
+2026-01-30T14:36:24.4950701Z npm: 10.8.2
+2026-01-30T14:36:24.4951876Z yarn: 1.22.22
+2026-01-30T14:36:24.4952855Z ##[endgroup]
+2026-01-30T14:36:24.4977276Z [command]/opt/hostedtoolcache/node/20.20.0/x64/bin/npm config get cache
+2026-01-30T14:36:24.6158557Z /home/runner/.npm
+2026-01-30T14:36:24.8039904Z npm cache is not found
+2026-01-30T14:36:24.8182798Z ##[group]Run npm ci
+2026-01-30T14:36:24.8183185Z [36;1mnpm ci[0m
+2026-01-30T14:36:24.8226188Z shell: /usr/bin/bash -e {0}
+2026-01-30T14:36:24.8226477Z ##[endgroup]
+2026-01-30T14:36:30.5104597Z 
+2026-01-30T14:36:30.5113607Z added 300 packages, and audited 301 packages in 6s
+2026-01-30T14:36:30.5119611Z 
+2026-01-30T14:36:30.5120119Z 56 packages are looking for funding
+2026-01-30T14:36:30.5120773Z   run `npm fund` for details
+2026-01-30T14:36:30.5121352Z 
+2026-01-30T14:36:30.5121629Z found 0 vulnerabilities
+2026-01-30T14:36:30.5399875Z ##[group]Run npm run build
+2026-01-30T14:36:30.5400173Z [36;1mnpm run build[0m
+2026-01-30T14:36:30.5432222Z shell: /usr/bin/bash -e {0}
+2026-01-30T14:36:30.5432509Z env:
+2026-01-30T14:36:30.5432694Z   NODE_ENV: production
+2026-01-30T14:36:30.5432916Z ##[endgroup]
+2026-01-30T14:36:30.6589942Z 
+2026-01-30T14:36:34.1944011Z > red-rebels-calendar@0.0.0 build
+2026-01-30T14:36:34.1944667Z > tsc -b && vite build
+2026-01-30T14:36:34.1944910Z 
+2026-01-30T14:36:34.1962605Z ##[error]scripts/scraper/index.ts(7,26): error TS2307: Cannot find module 'cheerio' or its corresponding type declarations.
+2026-01-30T14:36:34.1972020Z ##[error]scripts/scraper/index.ts(352,43): error TS7006: Parameter '_' implicitly has an 'any' type.
+2026-01-30T14:36:34.1974221Z ##[error]scripts/scraper/index.ts(352,46): error TS7006: Parameter 'row' implicitly has an 'any' type.
+2026-01-30T14:36:34.1976686Z ##[error]scripts/scraper/index.ts(400,7): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+2026-01-30T14:36:34.1978302Z   Type 'undefined' is not assignable to type 'string'.
+2026-01-30T14:36:34.1979593Z ##[error]scripts/scraper/index.ts(475,69): error TS7006: Parameter '_' implicitly has an 'any' type.
+2026-01-30T14:36:34.1981957Z ##[error]scripts/scraper/index.ts(475,72): error TS7006: Parameter 'row' implicitly has an 'any' type.
+2026-01-30T14:36:34.2314888Z ##[error]Process completed with exit code 2.
+2026-01-30T14:36:34.2424908Z Post job cleanup.
+2026-01-30T14:36:34.3379656Z [command]/usr/bin/git version
+2026-01-30T14:36:34.3415848Z git version 2.52.0
+2026-01-30T14:36:34.3460018Z Temporarily overriding HOME='/home/runner/work/_temp/93c304aa-88c5-4070-a558-45dfbb75e5ac' before making global git config changes
+2026-01-30T14:36:34.3461859Z Adding repository directory to the temporary git global config as a safe directory
+2026-01-30T14:36:34.3474429Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/anastasis-georgiou.github.io/anastasis-georgiou.github.io
+2026-01-30T14:36:34.3508754Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-01-30T14:36:34.3541643Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-01-30T14:36:34.3766398Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-01-30T14:36:34.3787664Z http.https://github.com/.extraheader
+2026-01-30T14:36:34.3800289Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-01-30T14:36:34.3831439Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-01-30T14:36:34.4058177Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-01-30T14:36:34.4094867Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-01-30T14:36:34.4454645Z Cleaning up orphan processes

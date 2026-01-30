@@ -14,7 +14,11 @@
       "WebFetch(domain:volleyball.org.cy)",
       "Bash(python3:*)",
       "Bash(cat:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm build:*)",
+      "Bash(npx vite build:*)"
     ]
   }
 }

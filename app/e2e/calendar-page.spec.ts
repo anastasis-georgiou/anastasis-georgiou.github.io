@@ -56,7 +56,7 @@ test.describe('Calendar Page', () => {
 
     test('theme toggle button is visible', async ({ page }) => {
       // Theme toggle shows sun or moon emoji
-      const themeButton = page.getByRole('button', { name: /[☀🌙]/ });
+      const themeButton = page.getByRole('button', { name: /[☀🌙]/u });
       await expect(themeButton).toBeVisible();
     });
   });

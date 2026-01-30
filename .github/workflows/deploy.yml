@@ -26,12 +26,15 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: app
 
       - name: Build
         run: npm run build
+        working-directory: app
         env:
           # Set base URL for GitHub Pages (update with your repo name)
           # VITE_BASE_URL: /red-rebels-calendar/
@@ -43,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./app/dist
 
   deploy:
     environment:

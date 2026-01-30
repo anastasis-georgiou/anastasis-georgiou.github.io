@@ -19,8 +19,7 @@ test.describe('Stats Page', () => {
       // Each stat card has a label with uppercase tracking-wide text
       // Count the number of stat value + label pairs in the first section
       const section = page.locator('section').first();
-      const cards = section.locator('div > div > div').filter({ has: page.locator('div + div') });
-      // Alternative: just check that we see all 9 labels
+      // Check that we see all 9 labels
       const labels = ['Matches', 'Wins', 'Draws', 'Losses', 'Goals', 'Points', 'Clean Sheets', 'Avg Goals Scored', 'Avg Goals Conceded'];
       for (const label of labels) {
         await expect(section.getByText(label, { exact: true })).toBeVisible();

@@ -7,9 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+app/node_modules
+app/dist
+app/dist-ssr
 *.local
 
 # Editor directories and files
@@ -24,9 +24,9 @@ dist-ssr
 *.sw?
 
 # Scraper
-scripts/scraper/node_modules
+app/scripts/scraper/node_modules
 cfa_fixtures.json
 
 # Test coverage
-coverage
+app/coverage
 *.lcov

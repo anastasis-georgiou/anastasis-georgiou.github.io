@@ -62,12 +62,12 @@ export interface FotMobTeamStatCategory {
   topThree: FotMobTeamStatParticipant[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface FotMobTeamData {
   overview?: {
     table?: Array<{
       data?: {
         tables?: Array<{
+          leagueName?: string;
           table?: { all?: FotMobTableRow[] };
           legend?: FotMobTableLegend[];
         }>;
@@ -98,6 +98,12 @@ export interface LeagueTableRow {
   pts: number;
   position: number;
   qualColor?: string;
+}
+
+export interface LeagueTableData {
+  leagueName: string;
+  rows: LeagueTableRow[];
+  legend: FotMobTableLegend[];
 }
 
 export interface TopScorer {
@@ -160,38 +166,37 @@ export async function fetchTeamData(): Promise<FotMobTeamData | null> {
 
 // Parsers
 
-export function parseLeagueTable(data: FotMobTeamData): { rows: LeagueTableRow[]; legend: FotMobTableLegend[] } | null {
-  // API nests table data under overview.table[0].data.tables[0].table.all
+export function parseLeagueTables(data: FotMobTeamData): LeagueTableData[] {
+  // API nests table data under overview.table[0].data.tables[].table.all
   const tableWrapper = data.overview?.table;
-  if (!tableWrapper || tableWrapper.length === 0) return null;
+  if (!tableWrapper || tableWrapper.length === 0) return [];
 
   const dataObj = tableWrapper[0].data;
-  if (!dataObj) return null;
+  if (!dataObj) return [];
 
   const nestedTables = dataObj.tables;
-  if (!nestedTables || nestedTables.length === 0) return null;
+  if (!nestedTables || nestedTables.length === 0) return [];
 
-  const firstTable = nestedTables[0];
-  const rawRows = firstTable.table?.all || [];
-
-  const rows: LeagueTableRow[] = rawRows.map((row) => ({
-    id: row.id,
-    name: row.name,
-    shortName: row.shortName,
-    played: row.played,
-    wins: row.wins,
-    draws: row.draws,
-    losses: row.losses,
-    goalDifference: row.goalConDiff,
-    pts: row.pts,
-    position: row.idx,
-    qualColor: row.qualColor,
-  }));
-
-  // Legend can be on the nested table or the top-level data
-  const legend = firstTable.legend || dataObj.legend || [];
-
-  return { rows, legend };
+  return nestedTables.map((t) => {
+    const rawRows = t.table?.all || [];
+    return {
+      leagueName: t.leagueName || '',
+      rows: rawRows.map((row) => ({
+        id: row.id,
+        name: row.name,
+        shortName: row.shortName,
+        played: row.played,
+        wins: row.wins,
+        draws: row.draws,
+        losses: row.losses,
+        goalDifference: row.goalConDiff,
+        pts: row.pts,
+        position: row.idx,
+        qualColor: row.qualColor,
+      })),
+      legend: t.legend || [],
+    };
+  });
 }
 
 export function parseTopScorers(data: FotMobTeamData): TopScorer[] {

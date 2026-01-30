@@ -8,7 +8,7 @@ import {
 } from 'recharts';
 import {
   fetchTeamData,
-  parseLeagueTable,
+  parseLeagueTables,
   parseTopScorers,
   parseLeagueRankings,
   parseVenueInfo,
@@ -16,8 +16,7 @@ import {
 } from '@/lib/fotmob';
 import type {
   FotMobTeamData,
-  LeagueTableRow,
-  FotMobTableLegend,
+  LeagueTableData,
   TopScorer,
   LeagueRanking,
   VenueInfo as VenueInfoType,
@@ -30,8 +29,7 @@ import { VenueInfo } from '@/components/stats/VenueInfo';
 import { NextMatch } from '@/components/stats/NextMatch';
 
 interface FotMobParsed {
-  tableRows: LeagueTableRow[];
-  tableLegend: FotMobTableLegend[];
+  tables: LeagueTableData[];
   topScorers: TopScorer[];
   rankings: LeagueRanking[];
   venue: VenueInfoType | null;
@@ -39,10 +37,8 @@ interface FotMobParsed {
 }
 
 function parseFotMobData(data: FotMobTeamData): FotMobParsed {
-  const table = parseLeagueTable(data);
   return {
-    tableRows: table?.rows ?? [],
-    tableLegend: table?.legend ?? [],
+    tables: parseLeagueTables(data),
     topScorers: parseTopScorers(data),
     rankings: parseLeagueRankings(data),
     venue: parseVenueInfo(data),
@@ -106,8 +102,8 @@ export default function StatsPage() {
 
       {/* 2. League Standing (FotMob) */}
       {loading && <LoadingSkeleton />}
-      {fotmob && fotmob.tableRows.length > 0 && (
-        <LeagueTable rows={fotmob.tableRows} legend={fotmob.tableLegend} />
+      {fotmob && fotmob.tables.length > 0 && (
+        <LeagueTable tables={fotmob.tables} />
       )}
 
       {/* 3. Overall stats (existing) */}

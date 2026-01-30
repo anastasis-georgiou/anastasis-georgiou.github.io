@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { LeagueTableData } from '@/lib/fotmob';
+import { tApi } from '@/lib/fotmob';
 
 interface LeagueTableProps {
   tables: LeagueTableData[];
@@ -30,7 +31,7 @@ export function LeagueTable({ tables }: LeagueTableProps) {
           <div key={tbl.leagueName}>
             {relevantTables.length > 1 && (
               <h3 className="text-red-300/80 text-sm font-extrabold uppercase tracking-wide mb-3">
-                {tbl.leagueName}
+                {tApi(t, 'leagues', tbl.leagueName)}
               </h3>
             )}
             <table className="w-full border-collapse text-sm">
@@ -70,8 +71,8 @@ export function LeagueTable({ tables }: LeagueTableProps) {
                         </span>
                       </td>
                       <td className={`py-2 px-2 ${isUs ? 'text-[#E02520]' : 'text-foreground'}`}>
-                        <span className="hidden sm:inline">{row.name}</span>
-                        <span className="sm:hidden">{row.shortName}</span>
+                        <span className="hidden sm:inline">{tApi(t, 'teams', row.name)}</span>
+                        <span className="sm:hidden">{tApi(t, 'teams', row.shortName)}</span>
                       </td>
                       <td className="py-2 px-2 text-center text-muted-foreground">{row.played}</td>
                       <td className="py-2 px-2 text-center text-green-400">{row.wins}</td>
@@ -91,7 +92,7 @@ export function LeagueTable({ tables }: LeagueTableProps) {
                 {tbl.legend.map((item) => (
                   <div key={item.title} className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: item.color }} />
-                    {item.title}
+                    {tApi(t, 'legendEntries', item.title)}
                   </div>
                 ))}
               </div>

@@ -133,6 +133,15 @@ export interface NextMatchInfo {
   isHome: boolean;
 }
 
+// Translation helper: looks up fotmob.{category}.{apiString}, falls back to the raw API string
+import type { TFunction } from 'i18next';
+
+export function tApi(t: TFunction, category: string, apiString: string): string {
+  const key = `fotmob.${category}.${apiString}`;
+  const translated = t(key, { defaultValue: '' });
+  return translated || apiString;
+}
+
 // In-memory cache
 let cachedData: FotMobTeamData | null = null;
 let cacheTimestamp = 0;

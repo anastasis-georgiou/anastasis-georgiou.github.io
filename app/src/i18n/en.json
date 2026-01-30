@@ -125,6 +125,53 @@
     "homeMatch": "Home",
     "awayMatch": "Away"
   },
+  "fotmob": {
+    "teams": {
+      "Nea Salamis": "Nea Salamis",
+      "PAEEK": "PAEEK",
+      "Doxa Katokopia": "Doxa Katokopia",
+      "Omonia 29 Maiou": "Omonia 29 Maiou",
+      "Ayia Napa": "Ayia Napa",
+      "Karmiotissa Pano Polemidion": "Karmiotissa Pano Polemidion",
+      "ASIL Lysi": "ASIL Lysi",
+      "MEAP Nisou": "MEAP Nisou",
+      "Digenis Morphou": "Digenis Morphou",
+      "APEA Akrotiri": "APEA Akrotiri",
+      "Chalkanoras Idaliou": "Chalkanoras Idaliou",
+      "Spartakos Kitiou": "Spartakos Kitiou",
+      "Iraklis Gerolakkou": "Iraklis Gerolakkou",
+      "Ethnikos Latsion": "Ethnikos Latsion",
+      "AEZ Zakakiou": "AEZ Zakakiou",
+      "PO Achyronas-Onisilos": "PO Achyronas-Onisilos"
+    },
+    "players": {
+      "Panagiotis Louka": "Panagiotis Louka",
+      "Georgios Christodoulou": "Georgios Christodoulou",
+      "Konstantinos Anthimou": "Konstantinos Anthimou"
+    },
+    "leagues": {
+      "2. Division": "2. Division",
+      "Promotion Group": "Promotion Group",
+      "Relegation Group": "Relegation Group"
+    },
+    "legendEntries": {
+      "Promotion qualification": "Promotion qualification",
+      "Relegation qualification": "Relegation qualification",
+      "Promotion": "Promotion",
+      "Relegation": "Relegation"
+    },
+    "venue": {
+      "Stadio Vitex Ammochostos Epistrofi": "Stadio Vitex Ammochostos Epistrofi",
+      "Lárnaka (Larnaca)": "Larnaca",
+      "Grass": "Grass"
+    },
+    "statHeaders": {
+      "Goals per match": "Goals per match",
+      "Goals conceded per match": "Goals conceded per match",
+      "Clean sheets": "Clean sheets",
+      "Red cards": "Red cards"
+    }
+  },
   "popover": {
     "time": "Time",
     "location": "Location",

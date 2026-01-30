@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { NextMatchInfo } from '@/lib/fotmob';
+import { tApi } from '@/lib/fotmob';
 
 interface NextMatchProps {
   match: NextMatchInfo;
@@ -34,11 +35,11 @@ export function NextMatch({ match }: NextMatchProps) {
           {match.isHome ? t('stats.homeMatch') : t('stats.awayMatch')}
         </div>
         <div className="text-sm font-bold text-muted-foreground mb-1">
-          Nea Salamina
+          {tApi(t, 'teams', 'Nea Salamis')}
         </div>
         <div className="text-xs text-muted-foreground/70 mb-2">vs</div>
         <div className="text-xl font-black text-foreground mb-3">
-          {match.opponentName}
+          {tApi(t, 'teams', match.opponentName)}
         </div>
         {match.utcTime && (
           <div className="text-sm font-bold text-[#E02520]">

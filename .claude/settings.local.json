@@ -20,7 +20,9 @@
       "Bash(pnpm build:*)",
       "Bash(npx vite build:*)",
       "Bash(npm ls:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(grep:*)",
+      "Bash(npm run dev)"
     ]
   }
 }

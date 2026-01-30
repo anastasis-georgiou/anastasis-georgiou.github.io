@@ -125,6 +125,53 @@
     "homeMatch": "Εντός Έδρας",
     "awayMatch": "Εκτός Έδρας"
   },
+  "fotmob": {
+    "teams": {
+      "Nea Salamis": "Νέα Σαλαμίνα",
+      "PAEEK": "ΠΑΕΕΚ",
+      "Doxa Katokopia": "Δόξα Κατωκοπιάς",
+      "Omonia 29 Maiou": "Ομόνοια 29ης Μαΐου",
+      "Ayia Napa": "Αγία Νάπα",
+      "Karmiotissa Pano Polemidion": "Καρμιώτισσα Πάνω Πολεμιδιών",
+      "ASIL Lysi": "ΑΣΙΛ Λύσης",
+      "MEAP Nisou": "ΜΕΑΠ Νήσου",
+      "Digenis Morphou": "Διγενής Μόρφου",
+      "APEA Akrotiri": "ΑΠΕΑ Ακρωτηρίου",
+      "Chalkanoras Idaliou": "Χαλκάνορας Ιδαλίου",
+      "Spartakos Kitiou": "Σπάρτακος Κιτίου",
+      "Iraklis Gerolakkou": "Ηρακλής Γερόλακκου",
+      "Ethnikos Latsion": "Εθνικός Λατσιών",
+      "AEZ Zakakiou": "ΑΕΖ Ζακακίου",
+      "PO Achyronas-Onisilos": "ΠΟ Αχυρώνας-Ονήσιλος"
+    },
+    "players": {
+      "Panagiotis Louka": "Παναγιώτης Λούκα",
+      "Georgios Christodoulou": "Γεώργιος Χριστοδούλου",
+      "Konstantinos Anthimou": "Κωνσταντίνος Ανθίμου"
+    },
+    "leagues": {
+      "2. Division": "Β' Κατηγορία",
+      "Promotion Group": "Όμιλος Ανόδου",
+      "Relegation Group": "Όμιλος Υποβιβασμού"
+    },
+    "legendEntries": {
+      "Promotion qualification": "Πρόκριση ανόδου",
+      "Relegation qualification": "Πρόκριση υποβιβασμού",
+      "Promotion": "Άνοδος",
+      "Relegation": "Υποβιβασμός"
+    },
+    "venue": {
+      "Stadio Vitex Ammochostos Epistrofi": "Στάδιο Βίτεξ Αμμόχωστος Επιστροφή",
+      "Lárnaka (Larnaca)": "Λάρνακα",
+      "Grass": "Χλοοτάπητας"
+    },
+    "statHeaders": {
+      "Goals per match": "Γκολ ανά αγώνα",
+      "Goals conceded per match": "Γκολ εις βάρος ανά αγώνα",
+      "Clean sheets": "Μηδέν παθητικό",
+      "Red cards": "Κόκκινες κάρτες"
+    }
+  },
   "popover": {
     "time": "Ώρα",
     "location": "Τοποθεσία",

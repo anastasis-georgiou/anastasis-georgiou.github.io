@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { TopScorer } from '@/lib/fotmob';
+import { tApi } from '@/lib/fotmob';
 
 interface TopScorersProps {
   scorers: TopScorer[];
@@ -29,7 +30,7 @@ export function TopScorers({ scorers }: TopScorersProps) {
             <div className="text-2xl font-black text-[#E02520] mb-1 drop-shadow-[0_2px_10px_rgba(224,37,32,0.5)]">
               {scorer.goals}
             </div>
-            <div className="text-sm font-bold text-foreground">{scorer.name}</div>
+            <div className="text-sm font-bold text-foreground">{tApi(t, 'players', scorer.name)}</div>
             <div className="text-xs text-muted-foreground uppercase mt-1">{t('stats.goalsLabel')}</div>
           </div>
         ))}

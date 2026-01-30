@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { LeagueRanking } from '@/lib/fotmob';
+import { tApi } from '@/lib/fotmob';
 
 interface LeagueRankingsProps {
   rankings: LeagueRanking[];
@@ -37,7 +38,7 @@ export function LeagueRankings({ rankings }: LeagueRankingsProps) {
             </div>
             <div className="text-lg font-bold text-foreground mb-1">{ranking.value}</div>
             <div className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
-              {t(`stats.ranking.${ranking.translationKey}`, ranking.label)}
+              {tApi(t, 'statHeaders', ranking.label)}
             </div>
             <div className="text-xs text-muted-foreground/60 mt-1">
               {t('stats.outOf', { total: ranking.totalTeams })}

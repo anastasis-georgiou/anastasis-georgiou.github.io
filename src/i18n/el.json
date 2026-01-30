@@ -1,0 +1,126 @@
+{
+  "common": {
+    "appName": "Red Rebels",
+    "brandText": "Red Rebels 25/26"
+  },
+  "nav": {
+    "calendar": "Ημερολόγιο",
+    "stats": "Στατιστικά",
+    "options": "Εργαλεία",
+    "export": "Εξαγωγή (.ics)",
+    "print": "Εκτύπωση"
+  },
+  "monthNav": {
+    "previous": "Προηγούμενος",
+    "next": "Επόμενος",
+    "jumpToToday": "Σήμερα"
+  },
+  "days": {
+    "monday": "Δευτέρα",
+    "tuesday": "Τρίτη",
+    "wednesday": "Τετάρτη",
+    "thursday": "Πέμπτη",
+    "friday": "Παρασκευή",
+    "saturday": "Σαββάτο",
+    "sunday": "Κυριακή"
+  },
+  "months": {
+    "september": "Σεπτέμβριος",
+    "october": "Οκτώβριος",
+    "november": "Νοέμβριος",
+    "december": "Δεκέμβριος",
+    "january": "Ιανουάριος",
+    "february": "Φεβρουάριος",
+    "march": "Μάρτιος",
+    "april": "Απρίλιος",
+    "may": "Μάιος",
+    "june": "Ιούνιος",
+    "july": "Ιούλιος",
+    "august": "Αύγουστος"
+  },
+  "filters": {
+    "title": "Φίλτρα Εκδηλώσεων",
+    "addFilter": "+ Φίλτρο",
+    "column": "Στήλη",
+    "value": "Τιμή",
+    "sport": "Άθλημα",
+    "location": "Τοποθεσία",
+    "status": "Κατάσταση",
+    "searchOpponent": "Αναζήτηση Αντιπάλου",
+    "searchPlaceholder": "Αναζήτηση...",
+    "clear": "Καθαρισμός",
+    "all": "Όλα",
+    "apply": "Εφαρμογή",
+    "pleaseSelect": "Παρακαλώ επιλέξτε",
+    "selectColumnFirst": "Επιλέξτε πρώτα στήλη",
+    "clearAll": "Καθαρισμός Όλων"
+  },
+  "sports": {
+    "footballMen": "Ανδρικό Ποδόσφαιρο",
+    "volleyballMen": "Ανδρικό Βόλεϊ",
+    "volleyballWomen": "Γυναικείο Βόλεϊ",
+    "meeting": "Συνεδρίες"
+  },
+  "locations": {
+    "home": "Εντός Έδρας",
+    "away": "Εκτός Έδρας"
+  },
+  "status": {
+    "upcoming": "Επερχόμενες",
+    "played": "Ολοκληρωμένες"
+  },
+  "legend": {
+    "title": "Υπόμνημα"
+  },
+  "stats": {
+    "matches": "Αγώνες",
+    "wins": "Νίκες",
+    "draws": "Ισοπαλίες",
+    "losses": "Ήττες",
+    "points": "Βαθμοί",
+    "goals": "Γκολ",
+    "goalDifference": "Διαφορά",
+    "overallStats": "Συνολική Απόδοση",
+    "homeVsAway": "Εντός vs Εκτός Έδρας",
+    "home": "Εντός Έδρας",
+    "away": "Εκτός Έδρας",
+    "recentForm": "Πρόσφατη Φόρμα (Τελευταίοι 5 Αγώνες)",
+    "headToHead": "Κόντρα με Κόντρα (Top 10)",
+    "opponent": "Αντίπαλος",
+    "played": "Αγ.",
+    "w": "Ν",
+    "d": "Ι",
+    "l": "Η",
+    "goalsCol": "Γκολ",
+    "winPct": "Ν%",
+    "noData": "Δεν υπάρχουν δεδομένα",
+    "cleanSheets": "Μηδέν Παθητικό",
+    "avgGoalsFor": "Μ.Ο. Γκολ Υπέρ",
+    "avgGoalsAgainst": "Μ.Ο. Γκολ Κατά",
+    "goalDistribution": "Κατανομή Γκολ",
+    "scored": "Υπέρ",
+    "conceded": "Κατά",
+    "streaks": "Σερί",
+    "currentStreak": "Τρέχον",
+    "longestWinStreak": "Καλύτερο Σερί Νικών",
+    "longestUnbeatenStreak": "Καλύτερο Αήττητο Σερί",
+    "records": "Ρεκόρ",
+    "biggestWin": "Μεγαλύτερη Νίκη",
+    "heaviestDefeat": "Βαρύτερη Ήττα",
+    "seasonProgress": "Πορεία Σεζόν",
+    "matchday": "Αγωνιστική"
+  },
+  "popover": {
+    "time": "Ώρα",
+    "location": "Τοποθεσία",
+    "venue": "Γήπεδο",
+    "homeGround": "Εντός Έδρας",
+    "awayGround": "Εκτός Έδρας",
+    "win": "Νίκη",
+    "draw": "Ισοπαλία",
+    "loss": "Ήττα",
+    "completed": "Ολοκληρωμένο",
+    "upcoming": "Επερχόμενο",
+    "tbd": "ΑΚ"
+  }
+}

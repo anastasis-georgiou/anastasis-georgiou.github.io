@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx playwright test --reporter=list)",
+      "Bash(npx playwright test:*)",
+      "WebFetch(domain:kop-web.dataproject.com)",
+      "WebFetch(domain:cfa.com.cy)",
+      "Bash(curl:*)",
+      "Bash(npx tsx:*)",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "WebFetch(domain:volleyball.org.cy)",
+      "Bash(python3:*)",
+      "Bash(cat:*)",
+      "Bash(node:*)"
+    ]
+  }
+}

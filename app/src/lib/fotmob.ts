@@ -1,4 +1,5 @@
 // FotMob API types (only fields we use)
+// Types match the actual API response from /api/data/teams?id=8590&ccode3=CYP
 
 export interface FotMobTableRow {
   id: number;
@@ -8,7 +9,7 @@ export interface FotMobTableRow {
   wins: number;
   draws: number;
   losses: number;
-  goalDifference: number;
+  goalConDiff: number;
   pts: number;
   idx: number;
   qualColor?: string;
@@ -19,100 +20,69 @@ export interface FotMobTableLegend {
   title: string;
 }
 
-export interface FotMobTable {
-  all: FotMobTableRow[];
-  legend?: FotMobTableLegend[];
-}
-
 export interface FotMobTopPlayer {
   id: number;
   name: string;
-  goals?: number;
-  assists?: number;
-  rating?: string;
-  teamId?: number;
-}
-
-export interface FotMobTopPlayersCategory {
-  header: string;
-  players: FotMobTopPlayer[];
-}
-
-export interface FotMobTeamFormEntry {
-  result: number; // 0 = loss, 1 = draw, 3 = win
-  resultString: string; // "W", "D", "L"
-  score: string;
-  opponent: { id: number; name: string };
+  rank: number;
+  teamId: number;
+  teamName: string;
+  value: number;
+  stat: { name: string; value: number };
 }
 
 export interface FotMobNextMatch {
   id: string;
   opponent: { id: number; name: string };
-  home?: { id: number; name: string };
-  away?: { id: number; name: string };
+  home?: { id: number; name: string; score?: number };
+  away?: { id: number; name: string; score?: number };
   notStarted: boolean;
-  status?: { utcTime: string };
-}
-
-export interface FotMobLastMatch {
-  id: string;
-  opponent: { id: number; name: string };
-  home?: { id: number; name: string; score: number };
-  away?: { id: number; name: string; score: number };
+  status?: { utcTime: string; started: boolean; finished: boolean };
 }
 
 export interface FotMobVenue {
   widget: {
     name: string;
     city: string;
-    country: string;
-    lat: number;
-    long: number;
   };
-  statPairs: Array<[{ value: string; title: string }, { value: string; title: string }]>;
+  statPairs: Array<[string, string | number]>;
 }
 
-export interface FotMobTeamStatEntry {
-  teamName: string;
+export interface FotMobTeamStatParticipant {
+  name: string;
   teamId: number;
-  value: string;
+  teamName: string;
+  value: number;
   rank: number;
 }
 
 export interface FotMobTeamStatCategory {
   header: string;
   localizedTitleId: string;
-  teamValue: string;
-  teamData: FotMobTeamStatEntry[];
+  participant: FotMobTeamStatParticipant;
+  topThree: FotMobTeamStatParticipant[];
 }
 
-export interface FotMobOverview {
-  table?: FotMobTable[];
-  topPlayers?: {
-    byGoals?: FotMobTopPlayersCategory;
-    byAssists?: FotMobTopPlayersCategory;
-    byRating?: FotMobTopPlayersCategory;
-  };
-  teamForm?: FotMobTeamFormEntry[];
-  nextMatch?: FotMobNextMatch;
-  lastMatch?: FotMobLastMatch;
-  venue?: FotMobVenue;
-  teamColors?: {
-    darkMode: string;
-    lightMode: string;
-    fontDarkMode: string;
-    fontLightMode: string;
-  };
-}
-
-export interface FotMobStats {
-  teams?: FotMobTeamStatCategory[];
-  players?: unknown[];
-}
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface FotMobTeamData {
-  overview?: FotMobOverview;
-  stats?: FotMobStats;
+  overview?: {
+    table?: Array<{
+      data?: {
+        tables?: Array<{
+          table?: { all?: FotMobTableRow[] };
+          legend?: FotMobTableLegend[];
+        }>;
+        legend?: FotMobTableLegend[];
+      };
+    }>;
+    topPlayers?: {
+      byGoals?: { players: FotMobTopPlayer[] };
+    };
+    nextMatch?: FotMobNextMatch;
+    venue?: FotMobVenue;
+  };
+  stats?: {
+    teams?: FotMobTeamStatCategory[];
+  };
 }
 
 // Parsed types for components
@@ -191,11 +161,20 @@ export async function fetchTeamData(): Promise<FotMobTeamData | null> {
 // Parsers
 
 export function parseLeagueTable(data: FotMobTeamData): { rows: LeagueTableRow[]; legend: FotMobTableLegend[] } | null {
-  const tables = data.overview?.table;
-  if (!tables || tables.length === 0) return null;
+  // API nests table data under overview.table[0].data.tables[0].table.all
+  const tableWrapper = data.overview?.table;
+  if (!tableWrapper || tableWrapper.length === 0) return null;
 
-  const table = tables[0];
-  const rows: LeagueTableRow[] = (table.all || []).map((row) => ({
+  const dataObj = tableWrapper[0].data;
+  if (!dataObj) return null;
+
+  const nestedTables = dataObj.tables;
+  if (!nestedTables || nestedTables.length === 0) return null;
+
+  const firstTable = nestedTables[0];
+  const rawRows = firstTable.table?.all || [];
+
+  const rows: LeagueTableRow[] = rawRows.map((row) => ({
     id: row.id,
     name: row.name,
     shortName: row.shortName,
@@ -203,38 +182,45 @@ export function parseLeagueTable(data: FotMobTeamData): { rows: LeagueTableRow[]
     wins: row.wins,
     draws: row.draws,
     losses: row.losses,
-    goalDifference: row.goalDifference,
+    goalDifference: row.goalConDiff,
     pts: row.pts,
     position: row.idx,
     qualColor: row.qualColor,
   }));
 
-  return { rows, legend: table.legend || [] };
+  // Legend can be on the nested table or the top-level data
+  const legend = firstTable.legend || dataObj.legend || [];
+
+  return { rows, legend };
 }
 
 export function parseTopScorers(data: FotMobTeamData): TopScorer[] {
+  // Players have goals in stat.value (or top-level value), not a "goals" field
   const players = data.overview?.topPlayers?.byGoals?.players;
   if (!players) return [];
   return players.slice(0, 3).map((p) => ({
     name: p.name,
-    goals: p.goals ?? 0,
+    goals: p.stat?.value ?? p.value ?? 0,
   }));
 }
 
 export function parseLeagueRankings(data: FotMobTeamData): LeagueRanking[] {
+  // Each category has a .participant (our team) and .topThree, not a teamData array
   const categories = data.stats?.teams;
   if (!categories) return [];
 
   const rankings: LeagueRanking[] = [];
   for (const cat of categories) {
-    const entry = cat.teamData?.find((t) => t.teamId === NEA_SALAMINA_ID);
-    if (entry) {
+    const participant = cat.participant;
+    if (participant && participant.teamId === NEA_SALAMINA_ID) {
+      // topThree gives us a rough sense of total; use length as minimum
+      const totalTeams = cat.topThree?.length || 0;
       rankings.push({
         label: cat.header,
         translationKey: cat.localizedTitleId || cat.header,
-        value: entry.value || cat.teamValue,
-        rank: entry.rank,
-        totalTeams: cat.teamData.length,
+        value: String(participant.value),
+        rank: participant.rank,
+        totalTeams: Math.max(totalTeams, participant.rank),
       });
     }
   }
@@ -242,6 +228,7 @@ export function parseLeagueRankings(data: FotMobTeamData): LeagueRanking[] {
 }
 
 export function parseVenueInfo(data: FotMobTeamData): VenueInfo | null {
+  // statPairs are [label, value] tuples, not objects
   const venue = data.overview?.venue;
   if (!venue) return null;
 
@@ -251,12 +238,11 @@ export function parseVenueInfo(data: FotMobTeamData): VenueInfo | null {
   };
 
   for (const pair of venue.statPairs || []) {
-    for (const stat of pair) {
-      const title = stat.title?.toLowerCase() || '';
-      if (title.includes('capacity')) info.capacity = stat.value;
-      if (title.includes('surface')) info.surface = stat.value;
-      if (title.includes('year') || title.includes('opened')) info.yearOpened = stat.value;
-    }
+    const label = String(pair[0]).toLowerCase();
+    const value = String(pair[1]);
+    if (label.includes('capacity')) info.capacity = value;
+    if (label.includes('surface')) info.surface = value;
+    if (label.includes('opened') || label.includes('year')) info.yearOpened = value;
   }
 
   return info;
@@ -266,8 +252,13 @@ export function parseNextMatch(data: FotMobTeamData): NextMatchInfo | null {
   const next = data.overview?.nextMatch;
   if (!next) return null;
 
+  // If the match has already started or finished, don't show it as "next"
+  if (next.status?.started || next.status?.finished) return null;
+
   const isHome = next.home?.id === NEA_SALAMINA_ID;
-  const opponentName = isHome ? (next.away?.name || next.opponent?.name || '') : (next.home?.name || next.opponent?.name || '');
+  const opponentName = isHome
+    ? (next.away?.name || next.opponent?.name || '')
+    : (next.home?.name || next.opponent?.name || '');
 
   return {
     opponentName,
